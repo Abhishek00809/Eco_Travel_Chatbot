@@ -1,0 +1,243 @@
+# =============================================================
+# ECO-TRAVEL ADVISOR CHATBOT — stories.yml
+# Conversation Flow Training Data
+# =============================================================
+
+version: "3.1"
+
+stories:
+
+# -------------------------------------------------------------
+# STORY 1: Happy Path — Full Trip Planning
+# User provides all details step by step
+# -------------------------------------------------------------
+- story: happy path full trip planning
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+      entities:
+        - destination: "Goa"
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - action: action_get_transport_options
+    - action: action_calculate_carbon
+    - action: action_rank_options
+    - intent: ask_carbon_offset
+    - action: action_recommend_offset
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 2: User Asks for Carbon Footprint Directly
+# -------------------------------------------------------------
+- story: user asks carbon footprint
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_carbon_footprint
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_calculate_carbon
+    - action: action_rank_options
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 3: User Asks for Eco Hotels
+# -------------------------------------------------------------
+- story: user asks for eco hotels
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_eco_hotels
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - intent: ask_carbon_offset
+    - action: action_recommend_offset
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 4: User Asks for Transport Options
+# -------------------------------------------------------------
+- story: user asks for transport options
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_transport_options
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_transport_options
+    - action: action_calculate_carbon
+    - action: action_rank_options
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 5: User Changes Preference Mid-Conversation
+# -------------------------------------------------------------
+- story: user changes preference mid conversation
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - action: action_rank_options
+    - intent: change_preference
+      entities:
+        - destination: "Kerala"
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - action: action_calculate_carbon
+    - action: action_rank_options
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 6: User Requests Human Handover
+# -------------------------------------------------------------
+- story: user requests human handover
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - intent: request_human_handover
+    - action: utter_handover_confirm
+    - intent: affirm
+    - action: action_human_handover
+    - action: utter_handover_initiated
+
+# -------------------------------------------------------------
+# STORY 7: User Requests Human Handover Without Planning
+# -------------------------------------------------------------
+- story: direct human handover request
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: request_human_handover
+    - action: utter_handover_confirm
+    - intent: affirm
+    - action: action_human_handover
+    - action: utter_handover_initiated
+
+# -------------------------------------------------------------
+# STORY 8: User Denies Handover — Continues with Bot
+# -------------------------------------------------------------
+- story: user denies handover continues with bot
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - intent: request_human_handover
+    - action: utter_handover_confirm
+    - intent: deny
+    - action: utter_deny
+    - action: action_get_eco_hotels
+    - action: action_rank_options
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 9: Out of Scope Message
+# -------------------------------------------------------------
+- story: out of scope message
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - action: action_rank_options
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 10: Bot Challenge — User asks if bot is real
+# -------------------------------------------------------------
+- story: bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_bot_challenge
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - action: action_rank_options
+
+# -------------------------------------------------------------
+# STORY 11: Full Trip with Carbon Offset at End
+# -------------------------------------------------------------
+- story: full trip with carbon offset
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: plan_trip
+      entities:
+        - destination: "Manali"
+        - transport_mode: "flight"
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_transport_options
+    - action: action_calculate_carbon
+    - action: action_rank_options
+    - action: utter_offset_intro
+    - action: action_recommend_offset
+    - intent: affirm
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# STORY 12: User Only Wants Eco Hotels — Short Flow
+# -------------------------------------------------------------
+- story: short flow eco hotels only
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_eco_hotels
+      entities:
+        - destination: "Bangalore"
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+    - active_loop: null
+    - action: action_get_eco_hotels
+    - intent: goodbye
+    - action: utter_goodbye
+
+- story: execute human handover on confirmation
+  steps:
+  - intent: request_human_handover
+  - action: utter_handover_offer
+  - intent: affirm
+  - action: action_human_handover
+
+- story: decline human handover
+  steps:
+  - intent: request_human_handover
+  - action: utter_handover_offer
+  - intent: deny
+  - action: utter_anything_else

@@ -1,0 +1,239 @@
+# =============================================================
+# ECO-TRAVEL ADVISOR CHATBOT — domain.yml
+# Master Configuration File
+# =============================================================
+
+version: "3.1"
+
+# -------------------------------------------------------------
+# INTENTS — What the user can say/mean
+# -------------------------------------------------------------
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - plan_trip
+  - provide_destination
+  - provide_dates
+  - provide_budget
+  - provide_sustainability_level
+  - provide_transport_mode
+  - ask_carbon_footprint
+  - ask_eco_hotels
+  - ask_transport_options
+  - ask_carbon_offset
+  - change_preference
+  - request_human_handover
+  - request_human
+  - out_of_scope
+  - bot_challenge
+
+# -------------------------------------------------------------
+# ENTITIES — Specific pieces of info extracted from messages
+# -------------------------------------------------------------
+entities:
+  - destination
+  - travel_dates
+  - budget
+  - sustainability_level
+  - transport_mode
+  - num_travellers
+
+# -------------------------------------------------------------
+# SLOTS — The bot's memory across the conversation
+# -------------------------------------------------------------
+slots:
+  destination:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: destination
+
+  travel_dates:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: travel_dates
+
+  budget:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: budget
+
+  sustainability_level:
+    type: categorical
+    values:
+      - high
+      - medium
+      - low
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: sustainability_level
+
+  transport_mode:
+    type: categorical
+    values:
+      - flight
+      - train
+      - bus
+      - car
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: transport_mode
+
+  num_travellers:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: num_travellers
+
+  carbon_score:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  handover_flag:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+# -------------------------------------------------------------
+# FORMS — Automatically collect all required trip details
+# -------------------------------------------------------------
+forms:
+  trip_planning_form:
+    required_slots:
+      - destination
+      - travel_dates
+      - budget
+      - sustainability_level
+      - transport_mode
+
+# -------------------------------------------------------------
+# RESPONSES — What the bot says
+# -------------------------------------------------------------
+responses:
+
+  utter_greet:
+    - text: "Hello! 🌿 Welcome to the Eco-Travel Advisor. I help you plan
+        sustainable, low-carbon trips. Where would you like to travel?"
+
+  utter_goodbye:
+    - text: "Thank you for choosing eco-friendly travel! 🌍
+        Safe and sustainable journey ahead. Goodbye!"
+
+  utter_ask_destination:
+    - text: "Where would you like to travel? Please tell me your destination."
+
+  utter_ask_travel_dates:
+    - text: "When are you planning to travel? Please provide your travel dates
+        or a rough timeframe (e.g. next weekend, July 10-15)."
+
+  utter_ask_budget:
+    - text: "What is your approximate budget for this trip?
+        Please mention the amount (e.g. ₹5000, €200)."
+
+  utter_ask_sustainability_level:
+    - text: "How important is sustainability to you for this trip?
+        Please choose one:\n
+        • **High** — I want the greenest options even if slightly pricier\n
+        • **Medium** — Balance between eco-friendly and cost\n
+        • **Low** — Cost is my priority but I am open to eco options"
+
+  utter_ask_transport_mode:
+    - text: "How are you planning to travel?\n
+        • ✈️ Flight\n
+        • 🚂 Train\n
+        • 🚌 Bus\n
+        • 🚗 Car\n
+        Which transport mode do you prefer?"
+
+  utter_ask_num_travellers:
+    - text: "How many people are travelling? This helps me calculate
+        the total carbon footprint accurately."
+
+  utter_affirm:
+    - text: "Great! Let me find the best eco-friendly options for you. "
+
+  utter_deny:
+    - text: "No problem! Would you like to change any preferences
+        or start over?"
+
+  utter_fallback:
+    - text: "I am sorry, I did not quite understand that. 
+        Could you rephrase? For example you can say:\n
+        • 'I want to travel to Goa next week'\n
+        • 'Show me eco-friendly hotels'\n
+        • 'What is the carbon footprint of my trip?'"
+
+  utter_ask_rephrase:
+    - text: "I am having trouble understanding. Could you try saying
+        that differently? Or would you like me to connect you
+        with a human travel advisor?"
+
+  utter_handover_confirm:
+    - text: "Connecting you to a human eco-travel advisor now. 
+        I have shared your full conversation details with them.
+        They will contact you shortly. Is there anything else
+        you would like me to note for them?"
+
+  utter_handover_initiated:
+    - text: " Your request has been sent to our eco-travel advisor team.
+        They will reach out within 24 hours. Thank you for
+        choosing sustainable travel! "
+
+  utter_out_of_scope:
+    - text: "I specialise in eco-friendly travel planning. I am not
+        able to help with that specific request, but I can help
+        you plan a sustainable trip! Shall we get started?"
+
+  utter_bot_challenge:
+    - text: "I am the Eco-Travel Advisor, an AI assistant built with
+        Rasa to help you plan sustainable, low-carbon journeys. "
+
+  utter_carbon_intro:
+    - text: "I will calculate the carbon footprint of your trip
+        and compare different travel options. Give me a moment... "
+
+  utter_offset_intro:
+    - text: "Great news — you can offset your trip's carbon footprint!
+        Let me find verified carbon offset programs for you. "
+
+  utter_handover_offer:
+    - text: "Would you like to speak with a human eco-travel advisor
+        for personalized recommendations?"
+
+  utter_anything_else:
+    - text: "Is there anything else I can help you with?
+        I can assist with eco-friendly travel planning,
+        carbon footprint calculations, or sustainable hotel recommendations."
+
+# -------------------------------------------------------------
+# ACTIONS — Custom Python actions
+# -------------------------------------------------------------
+actions:
+  - action_get_eco_hotels
+  - action_get_transport_options
+  - action_calculate_carbon
+  - action_rank_options
+  - action_recommend_offset
+  - action_human_handover
+  - action_fallback_handler
+  - validate_trip_planning_form
+
+# -------------------------------------------------------------
+# SESSION CONFIG
+# -------------------------------------------------------------
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false

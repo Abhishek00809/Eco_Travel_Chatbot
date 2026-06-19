@@ -1,0 +1,19 @@
+# endpoints.yml
+# Rasa Endpoints Configuration for Eco-Travel Advisor
+
+#action_endpoint:
+  url: "http://localhost:5055/webhook"
+
+#tracker_store:
+  #type: InMemoryTrackerStore
+
+#lock_store:
+ #type: in_memory
+
+#event_broker:
+  #type: pika
+  #url: localhost
+  #username: guest
+  #password: guest
+  #queues:
+    #- rasa_core_events

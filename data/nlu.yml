@@ -1,0 +1,477 @@
+# =============================================================
+# ECO-TRAVEL ADVISOR CHATBOT — nlu.yml
+# Training Data — Intents + Entities
+# =============================================================
+
+version: "3.1"
+
+nlu:
+
+# -------------------------------------------------------------
+# INTENT: greet
+# -------------------------------------------------------------
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - hello there
+    - hi there
+    - good morning
+    - good evening
+    - good afternoon
+    - hey there
+    - howdy
+    - greetings
+    - what's up
+    - hi bot
+    - hello eco travel
+    - start
+
+# -------------------------------------------------------------
+# INTENT: goodbye
+# -------------------------------------------------------------
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - see you later
+    - take care
+    - thanks bye
+    - that's all
+    - done for now
+    - exit
+    - quit
+    - thank you goodbye
+    - cheers
+    - I am done
+
+# -------------------------------------------------------------
+# INTENT: affirm
+# -------------------------------------------------------------
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - yep
+    - sure
+    - of course
+    - absolutely
+    - sounds good
+    - that works
+    - correct
+    - exactly
+    - yes please
+    - go ahead
+    - ok
+    - okay
+    - perfect
+
+# -------------------------------------------------------------
+# INTENT: deny
+# -------------------------------------------------------------
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - not really
+    - no thanks
+    - I don't want that
+    - cancel
+    - nevermind
+    - not interested
+    - that's not right
+    - no that's wrong
+    - stop
+    - I changed my mind
+
+# -------------------------------------------------------------
+# INTENT: plan_trip
+# -------------------------------------------------------------
+- intent: plan_trip
+  examples: |
+    - I want to plan a trip
+    - help me plan a sustainable trip
+    - I want to travel to [Goa](destination)
+    - plan an eco-friendly trip to [Kerala](destination)
+    - I want to go to [Bangalore](destination) next week
+    - I am planning a trip to [Hyderabad](destination)
+    - help me book an eco trip to [Ooty](destination)
+    - I want to visit [Manali](destination) sustainably
+    - plan a green trip to [Rishikesh](destination)
+    - I need help planning a trip to [Coorg](destination)
+    - I want to travel sustainably
+    - help me plan an environmentally friendly vacation
+    - I want a low carbon trip
+    - plan a trip for me
+    - I want to go somewhere eco-friendly
+    - suggest a sustainable destination
+    - help me with eco travel planning
+    - I want to reduce my carbon footprint while travelling
+    - plan a trip to [Paris](destination) with low emissions
+    - eco travel to [Amsterdam](destination)
+    - I want to visit [Berlin](destination) sustainably
+    - sustainable trip to [London](destination)
+
+# -------------------------------------------------------------
+# INTENT: provide_destination
+# -------------------------------------------------------------
+- intent: provide_destination
+  examples: |
+    - [Goa](destination)
+    - [Kerala](destination)
+    - [Bangalore](destination)
+    - [Hyderabad](destination)
+    - [Ooty](destination)
+    - [Manali](destination)
+    - [Rishikesh](destination)
+    - [Coorg](destination)
+    - [Mumbai](destination)
+    - [Delhi](destination)
+    - [Chennai](destination)
+    - [Kolkata](destination)
+    - [Jaipur](destination)
+    - [Shimla](destination)
+    - [Darjeeling](destination)
+    - [Paris](destination)
+    - [Amsterdam](destination)
+    - [Berlin](destination)
+    - [London](destination)
+    - I want to go to [Goa](destination)
+    - my destination is [Kerala](destination)
+    - I am going to [Manali](destination)
+    - travelling to [Ooty](destination)
+    - heading to [Rishikesh](destination)
+
+# -------------------------------------------------------------
+# INTENT: provide_dates
+# -------------------------------------------------------------
+- intent: provide_dates
+  examples: |
+    - [next weekend](travel_dates)
+    - [next week](travel_dates)
+    - [this weekend](travel_dates)
+    - [July 10 to July 15](travel_dates)
+    - [June 20](travel_dates)
+    - [next month](travel_dates)
+    - [in 2 weeks](travel_dates)
+    - [December holidays](travel_dates)
+    - I am travelling [next weekend](travel_dates)
+    - planning for [July](travel_dates)
+    - going [next Friday](travel_dates)
+    - dates are [August 5 to August 10](travel_dates)
+    - travelling on [25th June](travel_dates)
+    - I will be going [this coming Saturday](travel_dates)
+    - sometime [next month](travel_dates)
+    - [3 days next week](travel_dates)
+
+# -------------------------------------------------------------
+# INTENT: provide_budget
+# -------------------------------------------------------------
+- intent: provide_budget
+  examples: |
+    - my budget is [5000](budget)
+    - I have [10000](budget) rupees
+    - around [3000](budget)
+    - [500](budget) euros
+    - budget is [200](budget) pounds
+    - I can spend [8000](budget)
+    - approximately [15000](budget)
+    - [2000](budget) is my limit
+    - under [5000](budget)
+    - less than [10000](budget)
+    - about [7000](budget) rupees
+    - my budget is around [300](budget) euros
+    - I have about [20000](budget) to spend
+    - keeping it under [5000](budget)
+    - [12000](budget) total budget
+
+# -------------------------------------------------------------
+# INTENT: provide_sustainability_level
+# -------------------------------------------------------------
+- intent: provide_sustainability_level
+  examples: |
+    - [high](sustainability_level) sustainability
+    - I want [high](sustainability_level) eco options
+    - [medium](sustainability_level) sustainability
+    - [low](sustainability_level) sustainability
+    - I care a lot about the environment
+    - sustainability is very important to me
+    - I want the greenest options
+    - I want to be as eco-friendly as possible
+    - balance between eco and cost
+    - somewhere in the middle
+    - cost is my priority
+    - I prefer affordable options
+    - very eco conscious
+    - I want maximum sustainability
+    - green is my priority
+    - [high](sustainability_level)
+    - [medium](sustainability_level)
+    - [low](sustainability_level)
+    - I prefer [high](sustainability_level) sustainability options
+    - go with [medium](sustainability_level) level
+
+# -------------------------------------------------------------
+# INTENT: provide_transport_mode
+# -------------------------------------------------------------
+- intent: provide_transport_mode
+  examples: |
+    - I want to travel by [train](transport_mode)
+    - by [flight](transport_mode)
+    - [bus](transport_mode)
+    - [car](transport_mode)
+    - I prefer [train](transport_mode)
+    - flying there by [flight](transport_mode)
+    - taking the [train](transport_mode)
+    - going by [bus](transport_mode)
+    - driving by [car](transport_mode)
+    - I will take a [flight](transport_mode)
+    - [train](transport_mode) is my preference
+    - let's go by [bus](transport_mode)
+    - I am driving so [car](transport_mode)
+    - [flight](transport_mode) because it's faster
+    - prefer [train](transport_mode) for sustainability
+    - eco friendly so [train](transport_mode)
+
+# -------------------------------------------------------------
+# INTENT: ask_carbon_footprint
+# -------------------------------------------------------------
+- intent: ask_carbon_footprint
+  examples: |
+    - what is the carbon footprint of my trip
+    - how much CO2 will my trip produce
+    - calculate my carbon emissions
+    - what are the emissions for this journey
+    - how eco-friendly is my trip
+    - show me the carbon impact
+    - what is the environmental impact
+    - how much carbon does a flight produce
+    - compare carbon emissions of transport options
+    - what is the CO2 for train vs flight
+    - show carbon footprint
+    - is this trip eco-friendly
+    - how green is this journey
+    - calculate CO2 emissions
+    - what is my carbon score
+
+# -------------------------------------------------------------
+# INTENT: ask_eco_hotels
+# -------------------------------------------------------------
+- intent: ask_eco_hotels
+  examples: |
+    - show me eco-friendly hotels
+    - find green hotels in [Goa](destination)
+    - suggest sustainable accommodation
+    - I want environmentally friendly hotels
+    - show me low-carbon hotels
+    - find eco hotels
+    - what are the green hotels available
+    - suggest eco certified accommodation
+    - I want sustainable places to stay
+    - find me eco lodges
+    - show environmentally responsible hotels
+    - green hotels please
+    - sustainable hotels in [Kerala](destination)
+    - eco resorts in [Manali](destination)
+    - find eco-friendly stays
+
+# -------------------------------------------------------------
+# INTENT: ask_transport_options
+# -------------------------------------------------------------
+- intent: ask_transport_options
+  examples: |
+    - what are my transport options
+    - how can I get there sustainably
+    - show me low carbon transport
+    - what is the greenest way to travel
+    - compare train vs flight emissions
+    - what transport produces less CO2
+    - show sustainable travel options
+    - how should I travel to reduce emissions
+    - compare transport carbon footprint
+    - what is the most eco-friendly way to travel
+    - green transport options
+    - low emission transport
+
+# -------------------------------------------------------------
+# INTENT: ask_carbon_offset
+# -------------------------------------------------------------
+- intent: ask_carbon_offset
+  examples: |
+    - how can I offset my carbon footprint
+    - tell me about carbon offset options
+    - I want to offset my trip emissions
+    - how do I make my trip carbon neutral
+    - suggest carbon offset programs
+    - what are carbon credits
+    - how can I compensate for my CO2 emissions
+    - I want to plant trees to offset my trip
+    - carbon offset recommendations
+    - how to neutralise my carbon footprint
+    - make my trip carbon neutral
+    - offset my emissions
+    - suggest green offset projects
+
+# -------------------------------------------------------------
+# INTENT: change_preference
+# -------------------------------------------------------------
+- intent: change_preference
+  examples: |
+    - I want to change my destination
+    - can I change the dates
+    - I want to update my budget
+    - change destination to [Goa](destination)
+    - update my travel dates to [next month](travel_dates)
+    - I changed my mind about the transport
+    - switch to [train](transport_mode) instead
+    - update budget to [8000](budget)
+    - I want to go to [Kerala](destination) instead
+    - change my preference
+    - let me update my details
+    - I made a mistake in destination
+    - actually I want to go to [Manali](destination)
+    - change transport to [bus](transport_mode)
+
+# -------------------------------------------------------------
+# INTENT: request_human_handover
+# -------------------------------------------------------------
+- intent: request_human_handover
+  examples: |
+    - I want to talk to a human
+    - connect me to an agent
+    - speak to a real person
+    - I need human assistance
+    - transfer me to a travel advisor
+    - can I talk to someone
+    - I want human support
+    - connect me to a travel expert
+    - I need help from a real person
+    - human please
+    - agent please
+    - transfer to human
+    - I want to speak with a travel consultant
+    - connect me to your team
+    - I need expert advice
+
+# -------------------------------------------------------------
+# INTENT: out_of_scope
+# -------------------------------------------------------------
+- intent: out_of_scope
+  examples: |
+    - what is the weather today
+    - tell me a joke
+    - what is 2 plus 2
+    - who is the president
+    - what time is it
+    - book a restaurant
+    - order food
+    - play music
+    - what movies are showing
+    - tell me the news
+    - what is the stock price
+    - help me with my homework
+
+# -------------------------------------------------------------
+# INTENT: bot_challenge
+# -------------------------------------------------------------
+- intent: bot_challenge
+  examples: |
+    - are you a bot
+    - are you a robot
+    - are you human
+    - am I talking to a machine
+    - is this AI
+    - are you real
+    - who are you
+    - what are you
+    - are you ChatGPT
+    - are you an AI assistant
+
+# -------------------------------------------------------------
+# LOOKUP TABLES — helps entity recognition
+# -------------------------------------------------------------
+- lookup: destination
+  examples: |
+    - Goa
+    - Kerala
+    - Bangalore
+    - Hyderabad
+    - Ooty
+    - Manali
+    - Rishikesh
+    - Coorg
+    - Mumbai
+    - Delhi
+    - Chennai
+    - Kolkata
+    - Jaipur
+    - Shimla
+    - Darjeeling
+    - Paris
+    - Amsterdam
+    - Berlin
+    - London
+    - Barcelona
+    - Rome
+    - Prague
+
+# -------------------------------------------------------------
+# SYNONYMS — different words meaning the same thing
+# -------------------------------------------------------------
+- synonym: high
+  examples: |
+    - very eco
+    - maximum eco
+    - most sustainable
+    - greenest
+    - very green
+    - environmentally conscious
+    - eco priority
+
+- synonym: medium
+  examples: |
+    - balanced
+    - moderate
+    - middle ground
+    - somewhat eco
+    - fairly green
+
+- synonym: low
+  examples: |
+    - budget priority
+    - cost first
+    - affordable
+    - price priority
+    - not very eco
+
+- synonym: train
+  examples: |
+    - railway
+    - rail
+    - by rail
+    - by train
+
+- synonym: flight
+  examples: |
+    - plane
+    - airplane
+    - flying
+    - by air
+    - by plane
+    - air travel
+
+- synonym: bus
+  examples: |
+    - coach
+    - by bus
+    - by coach
+
+- synonym: car
+  examples: |
+    - drive
+    - driving
+    - by road
+    - road trip
+    - self drive

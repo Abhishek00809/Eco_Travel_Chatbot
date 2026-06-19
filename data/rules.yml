@@ -1,0 +1,66 @@
+# =============================================================
+# ECO-TRAVEL ADVISOR CHATBOT — rules.yml
+# Fixed Rules — Always Trigger No Matter What
+# =============================================================
+
+version: "3.1"
+
+rules:
+
+# -------------------------------------------------------------
+# RULE 1: Always greet when user says hello
+# -------------------------------------------------------------
+- rule: greet user
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+# -------------------------------------------------------------
+# RULE 2: Always say goodbye when user says bye
+# -------------------------------------------------------------
+- rule: say goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+# -------------------------------------------------------------
+# RULE 3: Always answer bot challenge
+# -------------------------------------------------------------
+- rule: answer bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_bot_challenge
+
+# -------------------------------------------------------------
+# RULE 4: Always handle out of scope messages
+# -------------------------------------------------------------
+- rule: handle out of scope
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+# -------------------------------------------------------------
+# RULE 5: Activate trip planning form on plan_trip intent
+# -------------------------------------------------------------
+- rule: activate trip planning form
+  steps:
+    - intent: plan_trip
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
+
+# -------------------------------------------------------------
+# RULE 6: Fallback — NLU confidence too low
+# -------------------------------------------------------------
+- rule: ask rephrase when low confidence
+  steps:
+    - intent: nlu_fallback
+    - action: action_fallback_handler
+
+# -------------------------------------------------------------
+# RULE 7: Handle preference change
+# -------------------------------------------------------------
+- rule: handle preference change
+  steps:
+    - intent: change_preference
+    - action: trip_planning_form
+    - active_loop: trip_planning_form
